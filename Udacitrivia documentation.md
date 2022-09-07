@@ -13,54 +13,68 @@ Backend
 From the backend folder run pip install requirements.txt. All required packages are included in the requirements file.
 
 To run the application run the following commands:
-
+```
 export FLASK_APP=flaskr
 export FLASK_ENV=development
 flask run
+```
 These commands put the application in development and directs our application to use the __init__.py file in our flaskr folder. Working in development mode shows an interactive debugger in the console and restarts the server whenever changes are made. If running locally on Windows, look for the commands in the Flask documentation.
-
+```
 The application is run on http://127.0.0.1:5000/ by default and is a proxy in the frontend configuration.
-
+```
 Frontend
 From the frontend folder, run the following commands to start the client:
-
+```
 npm install // only once to install dependencies
 npm start 
+```
 By default, the frontend will run on localhost:3000.
 
 Tests
 In order to run tests navigate to the backend folder and run the following commands:
 
-
+```
 createdb trivia_test
 psql trivia_test < trivia.psql
 python test_flaskr.py
-
+```
 All tests are kept in that file and should be maintained as updates are made to app functionality.
 
 API Reference
 Getting Started
-Base URL: At present this app can only be run locally and is not hosted as a base URL. The backend app is hosted at the default, http://127.0.0.1:5000/, which is set as a proxy in the frontend configuration.
+Base URL: At present this app can only be run locally and is not hosted as a base URL. The backend app is hosted at the default, 
+```
+http://127.0.0.1:5000/
+```
+which is set as a proxy in the frontend configuration.
 Authentication: This version of the application does not require authentication or API keys.
 Error Handling
 Errors are returned as JSON objects in the following format:
-
+```
 {
     "success": False, 
     "error": 422,
     "message": "unprocessable"
 }
+```
 The API will return three error types when requests fail:
-
+```
 400: Bad Request
 404: Resource Not Found
 422: UnProcessable
+```
 Endpoints
+```
 GET /questions
+```
 General:
 Returns a list of questions objects, success value, and total number of questions
 Results are paginated in groups of 10. Include a request argument to choose page number, starting from 1.
-Sample: curl http://127.0.0.1:5000/questions?page=1
+Sample: 
+```
+curl http://127.0.0.1:5000/questions?page=1
+```
+```
   {
   "questions": [
     {
@@ -137,13 +151,21 @@ Sample: curl http://127.0.0.1:5000/questions?page=1
   "success": true,
   "total_questions": 19
 }
+```
+```
 POST /questions_post
+```
 General:
 Creates a new question using the submitted question, answer, category and difficulty. Returns the id of the created question, success value, total question, and question list.
+```
 curl http://127.0.0.1:5000/questions_post -X POST -H "Content-Type: application/json" -d '{"question":"Who is the founder of Google?", "answer":"Larry Page", "category":"3","difficulty":"5"}'
+```
 
 For Window Pc use:
+```
 curl -X POST -H "Content-Type:application/json" -d "{\"question\":\"Who is the founder of Google?\", \"answer\":\"Larry Page\", \"category\":\"3\",\"difficulty\":\"5\"}" http://127.0.0.1:5000/questions_post 
+```
+```
 {
   "created": 31,
   "question": [
@@ -221,10 +243,17 @@ curl -X POST -H "Content-Type:application/json" -d "{\"question\":\"Who is the f
   "success": true,
   "total_questions": 23
 }
-DELETE /questions/{id}
+```
+DELETE
+```
+/questions/{id}
+```
 General:
 Deletes the question of the given ID if it exists. Returns the id of the deleted question, success value, total questions, and question list based on current page number to update the frontend.
+```
 curl -X DELETE http://127.0.0.1:5000/questions/7 
+```
+```
 {
   "deleted": 31,
   "question": [
@@ -302,12 +331,21 @@ curl -X DELETE http://127.0.0.1:5000/questions/7
   "success": true,
   "total_questions": 22
 }
-SEARCH /questions_search
+```
+SEARCH
+```
+/questions_search
+```
 General:
 This aids in query of a question based on a keyword.Returns the success value, total questions and questions list.
+```
 curl -X POST -H "Content-Type:application/json" -d "{"searchTerm":"the"}" http://127.0.0.1:5000/questions_search
+```
 For Window Pc
+```
 curl -X POST -H "Content-Type:application/json" -d "{\"searchTerm\":\"the\"}" http://127.0.0.1:5000/questions_search
+```
+```
 {
   "questions": [
     {
@@ -384,10 +422,17 @@ curl -X POST -H "Content-Type:application/json" -d "{\"searchTerm\":\"the\"}" ht
   "success": true,
   "total_questions": 10
 }
-GET /categories
+```
+GET
+```
+/categories
+```
 General:
 Gets all categories available in the db.Returns the success value and categories list.
+```
 curl http://127.0.0.1:5000/categories
+```
+```
 {
   "categories": [
     {
@@ -417,10 +462,17 @@ curl http://127.0.0.1:5000/categories
   ],
   "success": true
 }
-GET /question/{id}
+```
+GET 
+```
+/question/{id}
+```
 General:
 Gets questions that have a particular category id.Returns the success value ,questions list and total questions that have that category id.
+```
 curl http://127.0.0.1:5000/question/5
+```
+```
 {
   "questions": [
     {
@@ -456,7 +508,7 @@ curl http://127.0.0.1:5000/question/5
   "total_questions": 4
 }
 
-
+```
 
 Deployment N/A
 Authors
