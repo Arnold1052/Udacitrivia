@@ -1,17 +1,17 @@
-```
-Udacitrivia Project
-```
+
+# Udacitrivia Project
+
 This project is a trivia game that contains questions and answers. Users can add to the question list and with the frontend they can also confirm their answers by toggling the show answer button.
 
 
 
 
 
-Getting Started
-Pre-requisites and Local Development
+# Getting Started
+### Pre-requisites and Local Development
 Developers using this project should already have Python3, pip and node installed on their local machines.
 
-Backend
+### Backend
 From the backend folder run pip install requirements.txt. All required packages are included in the requirements file.
 
 To run the application run the following commands:
@@ -24,7 +24,7 @@ These commands put the application in development and directs our application to
 ```
 The application is run on http://127.0.0.1:5000/ by default and is a proxy in the frontend configuration.
 ```
-Frontend
+### Frontend
 From the frontend folder, run the following commands to start the client:
 ```
 npm install // only once to install dependencies
@@ -32,7 +32,7 @@ npm start
 ```
 By default, the frontend will run on localhost:3000.
 
-Tests
+### Tests
 In order to run tests navigate to the backend folder and run the following commands:
 
 ```
@@ -42,7 +42,7 @@ python test_flaskr.py
 ```
 All tests are kept in that file and should be maintained as updates are made to app functionality.
 
-API Reference
+### API Reference
 Getting Started
 Base URL: At present this app can only be run locally and is not hosted as a base URL. The backend app is hosted at the default, 
 ```
@@ -50,7 +50,7 @@ http://127.0.0.1:5000/
 ```
 which is set as a proxy in the frontend configuration.
 Authentication: This version of the application does not require authentication or API keys.
-Error Handling
+### Error Handling
 Errors are returned as JSON objects in the following format:
 ```
 {
@@ -65,7 +65,7 @@ The API will return three error types when requests fail:
 404: Resource Not Found
 422: UnProcessable
 ```
-Endpoints
+### Endpoints
 ```
 GET /questions
 ```
@@ -338,7 +338,7 @@ SEARCH
 ```
 /questions_search
 ```
-General:
+### General:
 This aids in query of a question based on a keyword.Returns the success value, total questions and questions list.
 ```
 curl -X POST -H "Content-Type:application/json" -d "{"searchTerm":"the"}" http://127.0.0.1:5000/questions_search
