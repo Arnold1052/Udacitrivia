@@ -1,4 +1,6 @@
+```
 Udacitrivia Project
+```
 This project is a trivia game that contains questions and answers. Users can add to the question list and with the frontend they can also confirm their answers by toggling the show answer button.
 
 
