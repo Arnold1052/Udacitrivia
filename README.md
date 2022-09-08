@@ -512,9 +512,37 @@ curl http://127.0.0.1:5000/question/5
 
 ```
 
-Deployment N/A
-Authors
+POST
+```
+/quizzes
+```
+General:
+Posts the user selected category and generates random questions based on that category number.Returns the success value and current question.
+```
+curl -X POST -H "Content-Type:application/json" -d "{"quiz_category":"3"}" http://127.0.0.1:5000/quizzes
+```
+
+Windows pc
+```
+curl -X POST -H "Content-Type:application/json" -d "{\"quiz_category\":\"3\"}" http://127.0.0.1:5000/quizzes
+```
+```
+{
+  "question": {
+    "answer": "Larry Page",
+    "category": "3",
+    "difficulty": 5,
+    "id": 28,
+    "question": "Who is the founder of Google?"
+  },
+  "success": true
+}
+
+```
+
+
+### Authors
 Yours truly, Arnold Kabare
 
-Acknowledgements
+### Acknowledgements
 The awesome team at Udacity. 
