@@ -353,6 +353,46 @@ def create_app(test_config=None):
     one question at a time is displayed, the user is allowed to answer
     and shown whether they were correct or not.
     """
+    @app.route("/quizzes", methods=["POST"])
+    def create_quizzes():
+        body = request.get_json()
+
+        
+        quiz_category = body.get("quiz_category", None)
+
+        try:
+            
+                
+            selection = Question.query.order_by(Question.id).filter(
+            Question.category.ilike("%{}%".format(quiz_category))
+            )
+            current_questions = paginate_questions(request, selection)
+            result = []
+            previousQuestions= []
+            
+            random_quiz = []
+            for item in current_questions:
+                result.append(item)
+                
+                random_quiz.append(random.choice(result))
+            rand_idx = random.randint(0, len(random_quiz)-1)
+            random_num = random_quiz[rand_idx]
+
+                
+
+
+            return jsonify(
+
+                {
+
+                    "success": True,
+                    "question": random_num,
+                    
+                    }
+                )
+        except:
+
+            abort(422)
 
     
 
