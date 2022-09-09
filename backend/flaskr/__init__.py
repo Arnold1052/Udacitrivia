@@ -57,29 +57,34 @@ def create_app(test_config=None):
    
     @app.route("/categories")
     def retrieve_categories():
+        try:
 
-        page = request.args.get('page', 1, type=int)
-        start = (page - 1) * 10
-        end = start + 10
 
-        selection = Category.query.order_by(Category.id).all()
+            page = request.args.get('page', 1, type=int)
+            start = (page - 1) * 10
+            end = start + 10
+
+            selection = Category.query.order_by(Category.id).all()
         #current_categories = paginate_categories(request, selection)
-        result = [rezult.format() for rezult in selection]
+            result = [rezult.format() for rezult in selection]
+            num_rez =result[start:end]
        
 
 
 
-        if len(result ) == 0:
-            abort(404)
+            if len(num_rez ) == 0:
+                abort(404)
       
         
-        return jsonify(
-            {
-                "success": True,
-                "categories": result[start:end],
+            return jsonify(
+                {
+                    "success": True,
+                    "categories": result[start:end],
                 
-            }
-        )
+                }
+            )
+        except:
+            abort(422)
 
 
 
@@ -107,25 +112,32 @@ def create_app(test_config=None):
     @app.route("/questions")
     def retrieve_questions():
 
-        page = request.args.get('page', 1, type=int)
-        start = (page - 1) * 10
-        end = start + 10
+        try:
 
-        selection = Question.query.order_by(Question.id).all()
-        result = [rezult.format() for rezult in selection]
+
+            page = request.args.get('page', 1, type=int)
+            start = (page - 1) * 10
+            end = start + 10
+
+            selection = Question.query.order_by(Question.id).all()
+            result = [rezult.format() for rezult in selection]
+            req = result[start:end]
 
         #current_questions = paginate_questions(request, selection)
 
-        if len(result) == 0:
-            abort(404)
+            if len(req) == 0:
+                abort(404)
 
-        return jsonify(
-            {
-                "success": True,
-                "questions": result[start:end],
-                "total_questions": len(result),
-            }
-        )
+            return jsonify(
+                {
+                    "success": True,
+                    "questions": result[start:end],
+                    "total_questions": len(result),
+                }
+            )
+
+        except:
+            abort(422)
 
     
 
@@ -394,6 +406,11 @@ def create_app(test_config=None):
 
             abort(422)
 
+   
+
+
+
+
     
 
 
@@ -443,7 +460,26 @@ def create_app(test_config=None):
             422,
         )
 
+ 
+
+
+    @app.errorhandler(500)
+    def unprocessable(error):
+        return (
+            jsonify({"success": False, "error": 500, "message": "server Error"}),
+            500,
+        )
+
     return app
+
+
+
+
+
+
+
+
+    
 
 if __name__ == "__main__":
     app = create_app()
